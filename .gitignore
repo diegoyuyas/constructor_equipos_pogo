@@ -1,0 +1,11 @@
+# Archivos de Python
+__pycache__/
+*.pyc
+
+# Caché de traducciones (se regenera solo, no hace falta subirla)
+spanish_move_cache.json
+
+# NOTA IMPORTANTE: pogo_data.sqlite NO va aquí.
+# Ese archivo SÍ debe subirse a GitHub, porque es la fuente de datos
+# que usa la app cuando corre en Streamlit Community Cloud (donde no
+# hay acceso a tu SQL Server local).
