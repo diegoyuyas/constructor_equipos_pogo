@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 -r requirements.txt
 pyodbc==5.1.0
+=======
+pyodbc>=5.0
+>>>>>>> b43a432fc423e999abc1c8d5266343cd992574e1
