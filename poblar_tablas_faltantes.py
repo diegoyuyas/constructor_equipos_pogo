@@ -13,7 +13,7 @@ Uso:
 
 Requisitos:
     pip install requests pandas pyodbc
-    SQL Server LOCALHOST\\SQLEXPRESS corriendo
+    SQL Server LOCALHOST\SQLEXPRESS corriendo
 """
 
 import json
