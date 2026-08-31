@@ -315,10 +315,10 @@ with tab1:
 # ---------------------- TAB 2: Ranking por Tipo ----------------------
 with tab2:
     st.header(f"Ranking filtrado por tipo - {league_label}")
-    st.caption("Mismo enfoque que PvPoke.com: reutiliza el rating ya calculado contra el meta abierto.")
+    st.caption("Filtra el ranking por tipo para ver qué Pokémon dominan. Si lo dejas vacío, filtra el ranking de toda la Liga Súper.")
 
     all_types = ["NORMAL","FIRE","WATER","ELECTRIC","GRASS","ICE","FIGHTING","POISON","GROUND","FLYING","PSYCHIC","BUG","ROCK","GHOST","DRAGON","DARK","STEEL","FAIRY"]
-    selected_types = st.multiselect("Filtra por tipo(s)", all_types, default=["FIRE"] if "FIRE" in all_types else [])
+    selected_types = st.multiselect("Filtra por tipo(s)", all_types, placeholder="Elige tipos, ej: Agua, Hada, Acero"), default=["FIRE"] if "FIRE" in all_types else [])
 
     limit = st.slider("Cuántos mostrar", 10, 200, 50)
 
@@ -355,11 +355,8 @@ with tab3:
     st.header("🏆 Copas Personalizadas (Custom Cup Builder)")
     st.markdown(
         """
-        **¡Nueva feature en construcción!** Define tus propias reglas de copa y genera un ranking real
-        simulando combates 1v1 entre todos los Pokémon elegibles.
-
-        Esto es similar a la herramienta [Custom Rankings de PvPoke](https://pvpoke.com/custom-rankings/)
-        pero simplificada para que corra en la nube gratis.
+        **Define tus propias reglas de copa y genera un ranking real
+        simulando combates 1v1 entre todos los Pokémon elegibles.**
         """
     )
 
