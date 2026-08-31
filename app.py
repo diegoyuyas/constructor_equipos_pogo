@@ -39,9 +39,14 @@ st.set_page_config(
     page_icon="⚔️",
     layout="wide",
     initial_sidebar_state="expanded",
+    menu_items={
+        "Get Help": None,
+        "Report a bug": None,
+        "About": None
+    }
 )
 
-# CSS para mejorar visual en móvil
+# CSS para mejorar visual en móvil + fixes pedidos
 st.markdown("""
 <style>
     .block-container { padding-top: 1.5rem; padding-bottom: 2rem; }
@@ -72,6 +77,37 @@ st.markdown("""
         margin-right: 4px;
         background: #e5e7eb;
     }
+    /* Fix 3: Hacer tabs visibles y legibles */
+    div[data-baseweb="tab-list"] {
+        gap: 12px;
+        background-color: transparent;
+    }
+    button[data-baseweb="tab"] {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
+        letter-spacing: normal !important;
+        color: #cbd5e1 !important;
+        border-bottom: 2px solid transparent !important;
+        padding: 10px 16px !important;
+        white-space: nowrap !important;
+    }
+    button[data-baseweb="tab"]:hover {
+        color: #f8fafc !important;
+        background: rgba(255,255,255,0.05) !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #ff6b6b !important;
+        border-bottom-color: #ff6b6b !important;
+        background: rgba(255,107,107,0.1) !important;
+    }
+    /* Fix 5: Ocultar menu de 3 puntos (Rerun, Settings, Print, etc) */
+    #MainMenu {visibility: hidden !important; display: none !important;}
+    footer {visibility: hidden !important; display: none !important;}
+    header {visibility: hidden !important; display: none !important;}
+    div[data-testid="stToolbar"] {visibility: hidden !important; display: none !important;}
+    div[data-testid="stDecoration"] {display: none !important;}
+    div[data-testid="stStatusWidget"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -107,13 +143,9 @@ with st.sidebar:
     st.title("⚔️ PvP Team Gen")
     st.caption("Pokémon GO - Generador de equipos")
 
-    # Test conexión
+    # Test conexión - solo muestra error si falla (mensajes verdes/azules ocultos por pedido)
     ok, msg = test_connection()
-    if ok:
-        st.success(f"BD OK: {msg[:80]}...")
-        if is_sqlite_available():
-            st.info(f"SQLite: {find_sqlite_file().name}")
-    else:
+    if not ok:
         st.error(f"Sin BD: {msg}")
         st.warning(
             "En local necesitas SQL Server LOCALHOST\\SQLEXPRESS con bd_pkm_pro. "
@@ -441,10 +473,6 @@ with tab3:
             st.error(f"Error generando copa custom: {e}")
             st.exception(e)
 
-# Footer
+# Footer - solo mensaje solicitado
 st.divider()
-st.caption(
-    "Datos base de PvPoke (MIT License) + nombres oficiales en español vía PokeAPI (pokeapi.co). "
-    "Motor de combate es aproximación, no réplica exacta de PvPoke. "
-    "Hecho con ❤️ para la comunidad PvP de Pokémon GO."
-)
+st.caption("Hecho con ❤️ para la comunidad PvP de Pokémon GO.")
