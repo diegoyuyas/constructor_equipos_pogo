@@ -318,7 +318,7 @@ with tab2:
     st.caption("Filtra el ranking por tipo para ver qué Pokémon dominan. Si lo dejas vacío, filtra el ranking de toda la Liga Súper.")
 
     all_types = ["NORMAL","FIRE","WATER","ELECTRIC","GRASS","ICE","FIGHTING","POISON","GROUND","FLYING","PSYCHIC","BUG","ROCK","GHOST","DRAGON","DARK","STEEL","FAIRY"]
-    selected_types = st.multiselect("Filtra por tipo(s)", all_types, placeholder="Elige tipos, ej: Agua, Hada, Acero"), default=["FIRE"] if "FIRE" in all_types else [])
+    selected_types = st.multiselect("Filtra por tipo(s)", all_types, placeholder="Elige tipos, ej: Agua, Hada, Acero"), default=["FIRE"] if "FIRE" in all_types else []
 
     limit = st.slider("Cuántos mostrar", 10, 200, 50)
 
